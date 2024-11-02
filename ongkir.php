@@ -227,7 +227,7 @@ class Ongkir extends CarrierModule
 
     public function getOrderShippingCost($params, $shipping_cost)
     {
-        if (Context::getContext()->customer->logged == true)
+        if (Context::getContext()->customer?->logged == true)
         {
             $id_address_delivery = Context::getContext()->cart->id_address_delivery;
             $address = new Address($id_address_delivery);
@@ -251,7 +251,7 @@ class Ongkir extends CarrierModule
     {
         $carrier = new Carrier();
 
-        $carrier->name = $this->l('My super carrier');
+        $carrier->name = $this->l('Ongkos Kirim');
         $carrier->is_module = true;
         $carrier->active = 1;
         $carrier->range_behavior = 1;
@@ -262,7 +262,7 @@ class Ongkir extends CarrierModule
         $carrier->shipping_method = 2;
 
         foreach (Language::getLanguages() as $lang)
-            $carrier->delay[$lang['id_lang']] = $this->l('Super fast delivery');
+            $carrier->delay[$lang['id_lang']] = $this->l('Hitung ongkos pengantaran domestik');
 
         if ($carrier->add() == true)
         {
